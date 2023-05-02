@@ -1,0 +1,136 @@
+.App {
+  text-align: center;
+}
+
+.header {
+  margin: 0;
+  height: 65px;
+  background: linear-gradient(90deg, #242024 1.18%, #28232a 100%);
+}
+
+.header h1 {
+  color: white;
+  padding: 10px;
+  margin: 0;
+}
+
+/* Style for search container */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: solid black;
+  border-width: 4px;
+  border-radius: 20px;
+  width: 25rem;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+/* Style for forecast options */
+.forecast-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #ddd;
+  color: #333;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button.active {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+/* Style for weather card container */
+.weather-card-container {
+  display: inline-block;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  /* flex-direction: row; */
+}
+
+.weather-card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 10px;
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(90deg, #7cc8ee 1.18%, #7cc8ee 100%);
+}
+
+.weather-card-header {
+  color: black;
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.weather-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  height: 320px;
+}
+
+.weather-icon {
+  width: 100px;
+  height: 100px;
+}
+
+.weather-description {
+  font-size: 16px;
+}
+
+.temperature {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.temperature span {
+  font-size: 20px;
+}
+
+.wind {
+  font-size: 16px;
+}
+
+.humidity {
+  font-size: 16px;
+}
+
+.active,
+      button:active,
+      button:focus {
+        background-color: #4CAF50;
+        color: white;
+  }
+
