@@ -34,7 +34,7 @@ button[type="submit"] {
   padding: 10px 20px;
   font-size: 16px;
   border: none;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: #fff;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
@@ -59,7 +59,7 @@ button {
 }
 
 button.active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: #fff;
 }
 
@@ -76,7 +76,7 @@ button.active {
 .weather-card {
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 10px;
   width: 300px;
   height: 400px;
@@ -128,9 +128,56 @@ button.active {
 }
 
 .active,
-      button:active,
-      button:focus {
-        background-color: #4CAF50;
-        color: white;
-  }
+button:active,
+button:focus {
+  background-color: #4caf50;
+  color: white;
+}
 
+.city-name {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.weather-container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.weather-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 10px;
+}
+
+.weather-header {
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.weather-header-title {
+  text-align: center;
+}
+
+.weather-header-title h3 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.weather-header-content {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  width: 100%;
+  background: linear-gradient(90deg, #242024 1.18%, #3b3a3b 100%);
+  color: white;
+  margin: 0;
+  /* padding: 10px; */
+}

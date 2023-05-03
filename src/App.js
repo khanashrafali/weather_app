@@ -9,8 +9,8 @@ import Map from "./components/map";
 function App() {
   const [weatherData, setWeatherData] = React.useState([]);
   const [coord, setCoord] = React.useState({
-    lng: 0,
-    lat: 0,
+    lng: -122.4194,
+    lat: 37.7749,
   });
 
   const handleCoord = (newCoord) => {
