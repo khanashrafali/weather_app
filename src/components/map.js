@@ -4,7 +4,7 @@ import React from "react";
 
 const Map = (props) => {
   const [zoom, setZoom] = React.useState(11);
-  console.log(props.coord);
+  // console.log(props.coord);
   return (
     <div style={{ height: "500px", width: "100%" }}>
       <GoogleMapReact
