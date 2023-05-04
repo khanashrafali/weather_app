@@ -21,7 +21,7 @@
   margin-top: 50px;
 }
 
-input[type="text"] {
+.weather-input {
   padding: 10px;
   font-size: 16px;
   border: solid black;
@@ -70,6 +70,7 @@ button.active {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  padding-top: 2px;
   /* flex-direction: row; */
 }
 
@@ -97,7 +98,7 @@ button.active {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   height: 320px;
 }
 
@@ -142,6 +143,7 @@ button:focus {
 .weather-container {
   max-width: 100%;
   margin: 0 auto;
+  margin-top: 50px;
 }
 
 .weather-icons {
@@ -181,3 +183,106 @@ button:focus {
   margin: 0;
   /* padding: 10px; */
 }
+
+.weather-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 100px;
+}
+
+.weather-buttons button {
+  padding: 10px 50px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #edb074 1.18%, #9f6508 100%);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* css for register page */
+.register-card {
+  margin: 150px auto;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+  background-color: #31bdba;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin: 20px 30px 20px 5px;
+}
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #161515;
+  border-width: 3px;
+  border-radius: 20px;
+  font-size: 16px;
+  outline: none;
+  text-align: center;
+}
+
+.register-buttons {
+  display: flex;
+  justify-content: space-around;
+  /* margin-top: 100px; */
+}
+
+.register-buttons button {
+  padding: 10px 50px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.register-button {
+  background: linear-gradient(90deg, #573582 1.18%, #2a063c 100%);
+  color: white;
+}
+
+.register-login-button {
+  background: linear-gradient(90deg, rgb(149, 143, 143) 1.18%, rgb(229, 212, 212) 100%);
+  color: rgb(50, 22, 61);
+}
+
+/* login form css */
+
+.login-submit-button {
+  background: linear-gradient(90deg, #573582 1.18%, #2a063c 100%);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  width: 150px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* input:focus {
+  outline: none;
+  border-bottom: 1px solid #007bff;
+}
+
+.form-group input[type="password"] {
+  letter-spacing: 0.3em;
+} */
