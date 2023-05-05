@@ -33,6 +33,7 @@ const WeatherForm = ({ handleWeatherData, handleCoordData }) => {
           maximum_temp: response.data.main.temp_max,
           humidity: response.data.main.humidity,
           id: response.data.id,
+          cityName: response.data.name,
         },
       ];
       const coord = {
@@ -49,11 +50,12 @@ const WeatherForm = ({ handleWeatherData, handleCoordData }) => {
 
   const anotherWeather = async () => {
     try {
-      console.log("else===>");
+      console.log("else===>", formData);
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?q=${formData.search}&appid=16bfa98849718de13b6e8978b87d47b8&units=metric`
       );
       const currentWeatherData = [];
+      console.log(response);
       response.data.list.map((data, index) =>
         currentWeatherData.push({
           time: new Date(data.dt_txt).toLocaleTimeString("en-US", {
@@ -74,9 +76,10 @@ const WeatherForm = ({ handleWeatherData, handleCoordData }) => {
           maximum_temp: data.main.temp_max,
           humidity: data.main.humidity,
           id: index,
+          cityName: response.data.city.name,
         })
       );
-      console.log(response);
+      console.log("dfgsdfdfdsfd");
       const coord = {
         lat: response.data.city.coord.lat,
         lng: response.data.city.coord.lon,
@@ -92,7 +95,7 @@ const WeatherForm = ({ handleWeatherData, handleCoordData }) => {
       if (weatherType === "Current Weather") currentWeather();
       else anotherWeather();
     }
-  }, [weatherType]);
+  }, [weatherType, formData]);
 
   const handleFormData = (event) => {
     setFormData({ [event.target.name]: event.target.value });
