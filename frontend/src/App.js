@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Header from "./components/header";
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import WeatherForm from "./components/weather_form";
 import WeatherCard from "./components/weather_card";
 import Map from "./components/map";
@@ -27,14 +28,37 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      {/* <Login /> */}
-      <Map coord={coord} />
-      <WeatherForm
-        handleWeatherData={handleWeatherData}
-        handleCoordData={handleCoord}
-      />
-      <WeatherCard weatherData={weatherData} />
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            exact
+            // render={(props) => <Home {...props} />}
+            Component={() => <Home />}
+          />
+          <Route path="/register" Component={() => <Register />} />
+          <Route path="/login" Component={() => <Login />} />
+          <Route
+            path="/dashboard"
+            element={[
+              <Map coord={coord} />,
+              <WeatherForm
+                handleWeatherData={handleWeatherData}
+                handleCoordData={handleCoord}
+              />,
+              <WeatherCard weatherData={weatherData} />,
+            ]}
+          />
+        </Routes>
+        {/* <Login /> */}
+        {/* <Map coord={coord} />
+        <WeatherForm
+          handleWeatherData={handleWeatherData}
+          handleCoordData={handleCoord}
+        />
+        <WeatherCard weatherData={weatherData} /> */}
+      </Router>
     </div>
   );
 }
