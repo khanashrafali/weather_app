@@ -5,6 +5,9 @@ import React from "react";
 import WeatherForm from "./components/weather_form";
 import WeatherCard from "./components/weather_card";
 import Map from "./components/map";
+import Home from "./components/home";
+import Register from "./components/register";
+import Login from "./components/login";
 
 function App() {
   const [weatherData, setWeatherData] = React.useState([]);
@@ -25,6 +28,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      {/* <Login /> */}
       <Map coord={coord} />
       <WeatherForm
         handleWeatherData={handleWeatherData}

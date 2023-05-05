@@ -20,6 +20,10 @@ const Home = () => {
               Otherwise Please Register Yourself By Clicking on Register Button
             </p>
           </div>
+          <div class="weather-buttons">
+              <button>Login</button>
+              <button>Register</button>
+          </div>
         </div>
       </div>
       ;
