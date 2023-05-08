@@ -1,104 +1,104 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useFormik } from "formik";
 import * as yup from "yup";
+import { signupSchema } from "../schemas";
+import { toast, Flip } from "react-toastify";
 
 const Register = () => {
   const apiUrl = "http://localhost:4000/user";
-  let isValid;
-  let errorMessage;
   const navigate = useNavigate();
-  const [formData, setFormData] = React.useState({
+
+  const initialValues = {
     username: "",
     email: "",
     password: "",
-  });
-
-  const handleFormChange = (event) => {
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [event.target.name]: event.target.value,
-      };
-    });
-    console.log({ formData });
   };
 
-  const userSchema = yup.object().shape({
-    username: yup.string().min(3).required("Username is required"),
-    email: yup
-      .string()
-      .email("Please enter valid email")
-      .required("Email is required"),
-    password: yup
-      .string()
-      .required("Password is required")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[|)(@\<{}>[\]/$!%*?:;.,=&_#~"'`^+-])[A-Za-z\d|)(@\<{}>[\]/$!%*?:;.,=&_#~"'`^+-]{8,16}$/,
-        "Password should be strong"
-      ),
-  });
-
-  const register = async (e) => {
-    e.preventDefault();
+  const register = async (values, action) => {
     try {
-      isValid = await userSchema.isValid(formData);
-      const validity = await userSchema.validate(formData, {
-        abortEarly: false,
+      const createUser = await axios.post(`${apiUrl}/signup`, values);
+      toast("User registered successfully.", {
+        type: toast.TYPE.SUCCESS,
+        autoClose: 5000,
+        transition: Flip,
       });
-      console.log("fdsfsdfds");
-      const createUser = await axios.post(`${apiUrl}/signup`, formData);
-      console.log(createUser);
+      action.resetForm();
       navigate("/login");
     } catch (error) {
-      //   console.log(error);
-      errorMessage = error.inner((err) => ({ [err.path]: err.message }));
+      toast(error.response.data.message, {
+        type: toast.TYPE.ERROR,
+        autoClose: 5000,
+        transition: Flip,
+      });
     }
   };
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: signupSchema,
+      onSubmit: register,
+    });
 
   return (
     <>
       <div class="register-card">
         <h2>Registration</h2>
-        <form onSubmit={register}>
+        <form onSubmit={handleSubmit}>
           <div class="form-group">
             <input
               className="form-control"
               type="text"
+              autoComplete="off"
               id="username"
               name="username"
               placeholder="Username"
-              onChange={handleFormChange}
-              value={formData.username}
-              required
+              onChange={handleChange}
+              value={values.username}
+              onBlur={handleBlur}
             />
+            {errors.username && touched.username && (
+              <div className="form-error">{errors.username}</div>
+            )}
           </div>
           <div class="form-group">
             <input
               className="form-control"
               type="email"
+              autoComplete="off"
               id="email"
               name="email"
               placeholder="Email"
-              onChange={handleFormChange}
-              value={formData.email}
-              required
+              onChange={handleChange}
+              value={values.email}
+              onBlur={handleBlur}
             />
+            {errors.email && touched.email && (
+              <div className="form-error">{errors.email}</div>
+            )}
           </div>
           <div class="form-group">
             <input
               className="form-control"
               type="password"
+              autoComplete="off"
               id="password"
               name="password"
               placeholder="Password"
-              onChange={handleFormChange}
-              value={formData.password}
-              required
+              onChange={handleChange}
+              value={values.password}
+              onBlur={handleBlur}
             />
+            {errors.password && touched.password && (
+              <div className="form-error">{errors.password}</div>
+            )}
           </div>
           <div class="register-buttons">
-            <button className="register-button">Register</button>
+            <button type="submit" className="register-button">
+              Register
+            </button>
             <Link to="/login">
               <button className="register-login-button">Login</button>
             </Link>

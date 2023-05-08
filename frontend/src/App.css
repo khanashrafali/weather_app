@@ -206,7 +206,7 @@ button:focus {
   max-width: 400px;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
   background-color: #31bdba;
 }
 
@@ -260,7 +260,11 @@ label {
 }
 
 .register-login-button {
-  background: linear-gradient(90deg, rgb(149, 143, 143) 1.18%, rgb(229, 212, 212) 100%);
+  background: linear-gradient(
+    90deg,
+    rgb(149, 143, 143) 1.18%,
+    rgb(229, 212, 212) 100%
+  );
   color: rgb(50, 22, 61);
 }
 
@@ -276,6 +280,11 @@ label {
   width: 150px;
   border-radius: 20px;
   cursor: pointer;
+}
+
+.form-error {
+  font-size: 1rem;
+  color: #b22b27;
 }
 
 /* input:focus {
