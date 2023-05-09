@@ -11,6 +11,7 @@ import Register from "./components/register";
 import Login from "./components/login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RequireAuth from "./RequireAuth";
 
 function App() {
   const [weatherData, setWeatherData] = React.useState([]);
@@ -42,6 +43,24 @@ function App() {
           />
           <Route path="/register" Component={() => <Register />} />
           <Route path="/login" Component={() => <Login />} />
+          {/* <Route
+            path="/dashboard"
+            element={
+              <RequireAuth>
+                <Route
+                  path="/"
+                  element={[
+                    <Map coord={coord} />,
+                    <WeatherForm
+                      handleWeatherData={handleWeatherData}
+                      handleCoordData={handleCoord}
+                    />,
+                    <WeatherCard weatherData={weatherData} />,
+                  ]}
+                />
+              </RequireAuth>
+            }
+          /> */}
           <Route
             path="/dashboard"
             element={[

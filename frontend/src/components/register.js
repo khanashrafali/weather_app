@@ -5,9 +5,10 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { signupSchema } from "../schemas";
 import { toast, Flip } from "react-toastify";
+import { userSignup } from "../api/apiServices";
 
 const Register = () => {
-  const apiUrl = "http://localhost:4000/user";
+  // const apiUrl = "http://localhost:4000/user";
   const navigate = useNavigate();
 
   const initialValues = {
@@ -18,7 +19,7 @@ const Register = () => {
 
   const register = async (values, action) => {
     try {
-      const createUser = await axios.post(`${apiUrl}/signup`, values);
+      const createUser = await userSignup(values);
       toast("User registered successfully.", {
         type: toast.TYPE.SUCCESS,
         autoClose: 5000,
@@ -27,6 +28,7 @@ const Register = () => {
       action.resetForm();
       navigate("/login");
     } catch (error) {
+      console.log({ error });
       toast(error.response.data.message, {
         type: toast.TYPE.ERROR,
         autoClose: 5000,

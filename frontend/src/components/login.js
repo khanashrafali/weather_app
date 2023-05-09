@@ -4,9 +4,11 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { signupSchema } from "../schemas";
 import { toast, Flip } from "react-toastify";
+import { userLogin } from "../api/apiServices";
+import jwtDecode from "jwt-decode";
 
 const Login = () => {
-  const apiUrl = "http://localhost:4000/user";
+  // const apiUrl = "http://localhost:4000/user";
   const navigate = useNavigate();
 
   // const [formData, setFormData] = React.useState({
@@ -34,13 +36,16 @@ const Login = () => {
   const login = async (values, action) => {
     // toastId.current = toast("logging...", { autoClose: false });
     try {
-      const userLoggedIn = await axios.post(`${apiUrl}/login`, values);
+      const userLoggedIn = await userLogin(values);
       toast("User Logged In successfully.", {
         type: toast.TYPE.SUCCESS,
         autoClose: 5000,
         transition: Flip,
       });
+      const decoded = jwtDecode(userLoggedIn.data.token);
       localStorage.setItem("user", JSON.stringify(userLoggedIn.data));
+      localStorage.setItem("token", JSON.stringify(userLoggedIn.data.token));
+      localStorage.setItem("EXPIRED_AT", decoded.exp);
       action.resetForm();
       navigate("/dashboard");
     } catch (error) {
