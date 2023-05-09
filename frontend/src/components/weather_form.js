@@ -110,6 +110,26 @@ const WeatherForm = ({ handleWeatherData, handleCoordData }) => {
     }
   };
 
+  const buttonArray = [
+    { className: "current-weather-btn", weatherType: "Current Weather" },
+    { className: "five-day-weather-btn", weatherType: "5 Day Weather" },
+    { className: "seven-day-weather-btn", weatherType: "7 Day Weather" },
+    {
+      className: "forty-eight-hour-weather-btn",
+      weatherType: "48 Hour Weather",
+    },
+  ];
+
+  const buttonElements = buttonArray.map((b, index) => (
+    <button
+      key={index}
+      class={b.className}
+      onClick={() => handleWeatherType(b.weatherType)}
+    >
+      {b.weatherType}
+    </button>
+  ));
+
   return (
     <>
       <div class="search-container">
@@ -124,32 +144,7 @@ const WeatherForm = ({ handleWeatherData, handleCoordData }) => {
           />
         </form>
       </div>
-      <div class="forecast-options">
-        <button
-          class="current-weather-btn"
-          onClick={() => handleWeatherType("Current Weather")}
-        >
-          Current Weather
-        </button>
-        <button
-          class="five-day-weather-btn"
-          onClick={() => handleWeatherType("5 Day Weather")}
-        >
-          5 Day Weather
-        </button>
-        <button
-          class="seven-day-weather-btn"
-          onClick={() => handleWeatherType("7 Day Weather")}
-        >
-          7 Day Weather
-        </button>
-        <button
-          class="forty-eight-hour-weather-btn"
-          onClick={() => handleWeatherType("48 Hour Weather")}
-        >
-          48 Hour Weather
-        </button>
-      </div>
+      <div class="forecast-options">{buttonElements}</div>
     </>
   );
 };

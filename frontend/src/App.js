@@ -2,12 +2,15 @@ import logo from "./logo.svg";
 import "./App.css";
 import Header from "./components/header";
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import WeatherForm from "./components/weather_form";
 import WeatherCard from "./components/weather_card";
 import Map from "./components/map";
 import Home from "./components/home";
 import Register from "./components/register";
 import Login from "./components/login";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [weatherData, setWeatherData] = React.useState([]);
@@ -27,14 +30,38 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      {/* <Login /> */}
-      <Map coord={coord} />
-      <WeatherForm
-        handleWeatherData={handleWeatherData}
-        handleCoordData={handleCoord}
-      />
-      <WeatherCard weatherData={weatherData} />
+      <Router>
+        <ToastContainer />
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            exact
+            // render={(props) => <Home {...props} />}
+            Component={() => <Home />}
+          />
+          <Route path="/register" Component={() => <Register />} />
+          <Route path="/login" Component={() => <Login />} />
+          <Route
+            path="/dashboard"
+            element={[
+              <Map coord={coord} />,
+              <WeatherForm
+                handleWeatherData={handleWeatherData}
+                handleCoordData={handleCoord}
+              />,
+              <WeatherCard weatherData={weatherData} />,
+            ]}
+          />
+        </Routes>
+        {/* <Login /> */}
+        {/* <Map coord={coord} />
+        <WeatherForm
+          handleWeatherData={handleWeatherData}
+          handleCoordData={handleCoord}
+        />
+        <WeatherCard weatherData={weatherData} /> */}
+      </Router>
     </div>
   );
 }
