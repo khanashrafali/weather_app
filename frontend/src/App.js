@@ -43,25 +43,20 @@ function App() {
           />
           <Route path="/register" Component={() => <Register />} />
           <Route path="/login" Component={() => <Login />} />
+          <Route path="/dashboard" element={<RequireAuth />}>
+            <Route
+              path=""
+              element={[
+                <Map coord={coord} />,
+                <WeatherForm
+                  handleWeatherData={handleWeatherData}
+                  handleCoordData={handleCoord}
+                />,
+                <WeatherCard weatherData={weatherData} />,
+              ]}
+            />
+          </Route>
           {/* <Route
-            path="/dashboard"
-            element={
-              <RequireAuth>
-                <Route
-                  path="/"
-                  element={[
-                    <Map coord={coord} />,
-                    <WeatherForm
-                      handleWeatherData={handleWeatherData}
-                      handleCoordData={handleCoord}
-                    />,
-                    <WeatherCard weatherData={weatherData} />,
-                  ]}
-                />
-              </RequireAuth>
-            }
-          /> */}
-          <Route
             path="/dashboard"
             element={[
               <Map coord={coord} />,
@@ -71,7 +66,7 @@ function App() {
               />,
               <WeatherCard weatherData={weatherData} />,
             ]}
-          />
+          /> */}
         </Routes>
         {/* <Login /> */}
         {/* <Map coord={coord} />

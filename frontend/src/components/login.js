@@ -6,8 +6,11 @@ import { signupSchema } from "../schemas";
 import { toast, Flip } from "react-toastify";
 import { userLogin } from "../api/apiServices";
 import jwtDecode from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/actions";
 
 const Login = () => {
+  const dispatch = useDispatch();
   // const apiUrl = "http://localhost:4000/user";
   const navigate = useNavigate();
 
@@ -47,6 +50,8 @@ const Login = () => {
       localStorage.setItem("token", JSON.stringify(userLoggedIn.data.token));
       localStorage.setItem("EXPIRED_AT", decoded.exp);
       action.resetForm();
+      window.dispatchEvent(new Event("loggedIn"));
+      dispatch(logout(false));
       navigate("/dashboard");
     } catch (error) {
       toast(error.response.data.message, {

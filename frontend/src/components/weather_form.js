@@ -1,7 +1,13 @@
 import React from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { addSearchHistory } from "../redux/actions";
 
 const WeatherForm = ({ handleWeatherData, handleCoordData }) => {
+  const dispatch = useDispatch();
+  const searchHistory = useSelector((state) => state.searchHistory);
+  const userId = JSON.parse(localStorage.getItem("user")).id;
+  console.log("dsdssearchHistory==>", searchHistory[userId]);
   // const [weatherData, setWeatherData] = React.useState(null);
   const [weatherType, setWeatherType] = React.useState("");
   const [formData, setFormData] = React.useState({
@@ -13,6 +19,7 @@ const WeatherForm = ({ handleWeatherData, handleCoordData }) => {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${formData.search}&appid=16bfa98849718de13b6e8978b87d47b8&units=metric`
       );
+      console.log("current================>");
       const currentWeatherData = [
         {
           time: new Date().toLocaleTimeString("en-US", {
@@ -41,6 +48,7 @@ const WeatherForm = ({ handleWeatherData, handleCoordData }) => {
         lng: response.data.coord.lon,
       };
       console.log("if==>", response);
+      dispatch(addSearchHistory(userId, response.data.name));
       handleWeatherData(currentWeatherData);
       handleCoordData(coord);
     } catch (error) {
@@ -84,6 +92,7 @@ const WeatherForm = ({ handleWeatherData, handleCoordData }) => {
         lat: response.data.city.coord.lat,
         lng: response.data.city.coord.lon,
       };
+      dispatch(addSearchHistory(userId, response.data.city.name));
       handleWeatherData(currentWeatherData);
       handleCoordData(coord);
     } catch (error) {}
@@ -137,12 +146,19 @@ const WeatherForm = ({ handleWeatherData, handleCoordData }) => {
           <input
             className="weather-input"
             type="text"
+            autoComplete="off"
             placeholder="Enter city name..."
             name="search"
             value={formData.search}
             onChange={handleFormData}
+            list="cities"
           />
         </form>
+        <datalist id="cities">
+          {searchHistory[userId]?.map((city) => (
+            <option key={city} value={city} />
+          ))}
+        </datalist>
       </div>
       <div class="forecast-options">{buttonElements}</div>
     </>

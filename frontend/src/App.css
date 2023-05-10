@@ -3,6 +3,9 @@
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0;
   height: 65px;
   background: linear-gradient(90deg, #242024 1.18%, #28232a 100%);
@@ -12,6 +15,12 @@
   color: white;
   padding: 10px;
   margin: 0;
+  text-align: center;
+  flex: 1;
+}
+
+.logout-button {
+  margin-right: 10px;
 }
 
 /* Style for search container */
@@ -285,6 +294,27 @@ label {
 .form-error {
   font-size: 1rem;
   color: #b22b27;
+}
+
+/* CSS styles for the datalist element */
+datalist {
+  position: absolute !important;
+  z-index: 1 !important;
+  width: 100% !important;
+  max-height: 150px !important;
+  overflow-y: auto !important;
+  background-color: #fff !important;
+  border: 1px solid #ccc !important;
+  border-radius: 3px !important;
+}
+
+option {
+  padding: 5px;
+  cursor: pointer;
+}
+
+option:hover {
+  background-color: #f2f2f2;
 }
 
 /* input:focus {
